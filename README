@@ -1,11 +1,21 @@
 NAME
-    Plack::Middleware::InteractiveDebugger -
+    Plack::Middleware::InteractiveDebugger - Awesome Interactive Debugger
+    ala Werkzeug
 
 SYNOPSIS
-      use Plack::Middleware::InteractiveDebugger;
+      enable "InteractiveDebugger";
+
+WARNINGS
+    This middleware doesn't work with forking web server implementations
+    such as Starman.
+
+    This middleware exposes an ability to execute any code on the machine
+    where your application is running, with your own permission. Never
+    enable this middleware on production machines or shared environment.
 
 DESCRIPTION
-    Plack::Middleware::InteractiveDebugger is
+    Plack::Middleware::InteractiveDebugger is a PSGI middleware component
+    that provides an awesome JavaScript in-browser interacive debugger.
 
 AUTHOR
     Tatsuhiko Miyagawa <miyagawa@bulknews.net>
@@ -13,8 +23,22 @@ AUTHOR
 COPYRIGHT
     Copyright 2011- Tatsuhiko Miyagawa
 
+    Werkzeug HTML, JavaScript, CSS and image files are Copyright 2010 by the
+    Werkzeug Team. <http://werkzeug.pocoo.org/>
+
+    jQuery is Copyright 2011 John Resig
+
 LICENSE
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
 
+    This library contains JavaScript, CSS and image files which are taken
+    and modified from Werkzeug software, licensed under the BSD license.
+
+    This library also contains jQuery library which is licensed under the
+    MIT license. <http://jquery.org/license/>
+
 SEE ALSO
+    <http://werkzeug.pocoo.org/> Plack::Middleware::StackTrace
+    Plack::Middleware::REPL
+
