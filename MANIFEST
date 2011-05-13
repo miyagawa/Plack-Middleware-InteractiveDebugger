@@ -15,5 +15,13 @@ Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
+share/console.png
+share/jquery.min.js
+share/less.png
+share/jquery.js
+share/style.css
+share/source.png
+share/debugger.js
+share/more.png
 t/00_compile.t
 xt/pod.t
