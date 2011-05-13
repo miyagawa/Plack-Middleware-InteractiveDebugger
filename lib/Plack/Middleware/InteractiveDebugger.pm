@@ -99,7 +99,6 @@ sub call {
     local $SIG{__DIE__} = sub {
         $trace = Devel::StackTrace::WithLexicals->new(
             indent => 1, message => munge_error($_[0], [ caller ]),
-            ignore_package => __PACKAGE__,
         );
         die @_;
     };
@@ -113,6 +112,7 @@ sub call {
     };
 
     if ($trace && ($caught || (ref $res eq 'ARRAY' && $res->[0] == 500)) ) {
+        $self->filter_frames($trace);
         my $html = render_full($env, $trace);
 
         $res = [500, ['Content-Type' => 'text/html; charset=utf-8'], [ utf8_safe($html) ]];
@@ -124,6 +124,21 @@ sub call {
     undef $trace;
 
     return $res;
+}
+
+sub filter_frames {
+    my($self, $trace) = @_;
+
+    my @new_frames;
+    my @frames = $trace->frames;
+    shift @frames if $frames[0]->filename eq __FILE__;
+
+    for my $frame (@frames) {
+        push @new_frames, $frame;
+        last if $frame->filename eq __FILE__;
+    }
+
+    $trace->{frames} = \@new_frames;
 }
 
 # below is a copy from StackTrace
