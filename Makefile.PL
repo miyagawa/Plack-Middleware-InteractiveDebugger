@@ -10,5 +10,6 @@ requires 'Try::Tiny';
 requires 'Eval::WithLexicals';
 build_requires 'Test::More', 0.88;
 test_requires 'Test::Requires';
+install_share;
 auto_set_repository();
 WriteAll;
