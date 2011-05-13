@@ -1,6 +1,13 @@
 use inc::Module::Install;
 all_from 'lib/Plack/Middleware/InteractiveDebugger.pm';
 readme_from('lib/Plack/Middleware/InteractiveDebugger.pm');
+requires 'parent';
+requires 'Plack', 0.9977;
+requires 'File::ShareDir';
+requires 'Data::Dump::Streamer';
+requires 'Devel::StackTrace::WithLexicals', 0.08;
+requires 'Try::Tiny';
+requires 'Eval::WithLexicals';
 build_requires 'Test::More', 0.88;
 test_requires 'Test::Requires';
 auto_set_repository();
